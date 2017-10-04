@@ -1,8 +1,7 @@
-<%= shout.body %>
-		<span> - by - <span>
-	<%= link_to shout.username, shout.user %> 
-		<span> - by - <span>
-	<%= link_to shout do%>
+<div>
+	<%= link_to shout.username %> 
+	<%= shout.body %>
+	<%= link_to shout do %>
 		<%= time_ago_in_words(shout.created_at) %> ago
 	<% end %>
 </div>
