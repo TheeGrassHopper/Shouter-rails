@@ -16,6 +16,7 @@ class MakeShoutsPolymorfice < ActiveRecord::Migration[5.1]
 	  			text_shout = TextShout.create(body: shout.body)
 	  			shout.update(content_id: text_shout.id, content_type: "TextShout")
 	  		end
+	  		
 	  		dir.down do
 	  			shout.update(body: shout.content.body)
 	  			shout.content.destroy
