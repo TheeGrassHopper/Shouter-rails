@@ -1,19 +1,19 @@
 <h1>dashboards#show</h1>
 
-<%= form_for @shout do |f| %>
+<%= form_for @shout do |form| %>
 <%= form.hidden_field :content_type, value: "TextShout" %>
-<%= f.fields_for :content do |content_form| %>
+<%= form.fields_for :content do |content_form| %>
 	<%= content_form.text_field :body, placeholder: "Shouter here", required: true %>
-	<%= content_form.submit "Shout!"%>
+	<%= content_form.submit "Shout text!"%>
 	<% end %>
 <% end %>
 
 
-<%= form_for @shout do |f| %>
+<%= form_for @shout do |form| %>
 <%= form.hidden_field :content_type, value: "PhotoShout"%>
-<%= f.fields_for :content do |content_form| %>
-	<%= content_form.file_field :body, required: true %>
-	<%= f.submit "Shout!"%>
+<%= form.fields_for :content do |content_form| %>
+	<%= content_form.file_field :image, required: true %>
+	<%= content_form.submit "Shout photo!"%>
 	<% end %>
 <% end %>
 

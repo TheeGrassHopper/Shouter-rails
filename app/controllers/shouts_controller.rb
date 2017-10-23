@@ -1,12 +1,12 @@
 class ShoutsController < ApplicationController
 
-	def show
-		@shouts = Shout.find(params[:id])
-	end
-
 	def create
 		shout =	current_user.shouts.create(shout_params)
 		redirect_to root_path, redirect_option_for(shout)
+	end
+
+	def show
+		@shout = Shout.find(params[:id])
 	end
 
 	private
@@ -16,13 +16,14 @@ class ShoutsController < ApplicationController
 	end
 
 	def content_from_params
-		case params[:shout][:content_type]
-			when "TextShout" then TextShout.new(text_shout_content_params)
-			when "PhotoShout" then PhotoShout.new(photo_shot_content_params)
+		if params[:shout][:content_type] ==  "TextShout"
+			TextShout.new(text_shout_content_params)
+		elsif params[:shout][:content_type] == "PhotoShout"
+			PhotoShout.new(photo_shout_content_params)
 		end
 	end
 
-	def text_contnet_content_params 
+	def text_shout_content_params 
 		params.require(:shout).require(:content).permit(:body)
 	end
 
